@@ -5,7 +5,8 @@ on:
 
 jobs:
     get-dsr1-configs:
-        runs-on: ubuntu-latest
+        # runs-on: ubuntu-latest
+        runs-on: self-hosted
         outputs:
             multi-node-search-space-config: ${{ steps.get-dsr1-configs.outputs.multi-node-search-space-config }}
             single-node-search-space-config: ${{ steps.get-dsr1-configs.outputs.single-node-search-space-config }}
@@ -22,7 +23,8 @@ jobs:
                   echo "single-node-search-space-config=$CONFIG_JSON_SINGLE_NODE" >> $GITHUB_OUTPUT
 
     get-gptoss-configs:
-        runs-on: ubuntu-latest
+        # runs-on: ubuntu-latest
+        runs-on: self-hosted
         outputs:
             multi-node-search-space-config: ${{ steps.get-gptoss-configs.outputs.multi-node-search-space-config }}
             single-node-search-space-config: ${{ steps.get-gptoss-configs.outputs.single-node-search-space-config }}
@@ -197,7 +199,8 @@ jobs:
     calc-success-rate:
         needs: [collect-dsr1-results, collect-gptoss-results]
         if: ${{ always() }}
-        runs-on: ubuntu-latest
+        # runs-on: ubuntu-latest
+        runs-on: self-hosted
 
         env:
             RESULTS_DIR: "results/"
